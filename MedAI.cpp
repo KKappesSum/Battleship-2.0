@@ -40,7 +40,7 @@ void MedAI::updateMiss()
     else if (direction == current)
     {
         int r = stoi(prevShot.substr(0,1));
-        int c = stoi(prevShot.substr(1,2));
+        int c = stoi(prevShot.substr(2));
         if (direction ==1)
         {
             direction = 3;
