@@ -256,7 +256,7 @@ class Executive
     string* generateCoordsArr(int direction, int startRow, int startCol, int size);
 
     /** Generates valid endpoints for a Ship.
-     * @pre the Ship's start coordinate has already been validated.
+     * @pre the Ship's start coordinate has already been validated, and the Ship has size > 1.
      * @param startRow the starting row coordinate.
      * @param startCol the starting column coordinate.
      * @param size the size of the Ship.
@@ -270,5 +270,7 @@ class Executive
      * @return 1, 2, 3, or 4 for north, east, south, & west directions respectively; or 0 if all directions are invalid.
      */
     int chooseRandDirection(string* endpoints);
+
+
 };
 #endif
