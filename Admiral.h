@@ -100,5 +100,11 @@ class Admiral
 		 */
 		virtual string fire() {}
 
+		/** Remove the last Ship that was added and clear that Ship's coordinates from the Grid.
+		 * @pre the Admiral has at least one Ship.
+		 * @post Removes and deletes the last Ship that was added and clears that Ship's coordinates from the Grid.
+		 */
+		void removeLastShip();
+
 };
 #endif
