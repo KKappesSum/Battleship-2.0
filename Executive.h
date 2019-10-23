@@ -232,7 +232,7 @@ class Executive
      * @param turnResult is the value of the grid at the a coordinate point
      * @param isPlayer1 is a bool true for player 1, false for player2
      */
-    void receivedPowerUp(string turnResult, bool isPlayer1);
+    void receivedPowerUp(string turnResult, bool isPlayer1, string coord);
 
     /** Clears the console by printing newlines.
      * @post prints 100 newlines to the console.

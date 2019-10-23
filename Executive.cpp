@@ -798,7 +798,7 @@ bool Executive::handleTurn(const int player, const bool AI)
       {
         targetCoord = askForFireCoord(m_turn);
         turnResult = m_player2->incomingShot(targetCoord);
-        receivedPowerUp(turnResult, true);
+        receivedPowerUp(turnResult, true, targetCoord);
         printTurnResult(turnResult);
       }
         cout << "Next player's turn!\n";
@@ -842,7 +842,7 @@ bool Executive::handleTurn(const int player, const bool AI)
         {
             targetCoord = askForFireCoord(m_turn);
             turnResult = m_player2->incomingShot(targetCoord);
-            receivedPowerUp(turnResult, true);
+            receivedPowerUp(turnResult, true, targetCoord);
             printTurnResult(turnResult);
         }
         cout << "Next player's turn!\n";
@@ -872,7 +872,7 @@ bool Executive::handleTurn(const int player, const bool AI)
       {
         targetCoord = askForFireCoord(m_turn);
         turnResult = m_player1->incomingShot(targetCoord);
-        receivedPowerUp(turnResult, false);
+        receivedPowerUp(turnResult, false, targetCoord);
         printTurnResult(turnResult);
       }
       cout << "Next player's turn!\n";
@@ -1074,11 +1074,12 @@ void Executive::usePowerUp(string powerup, bool isPlayer1)
           
 }
 
-void Executive::receivedPowerUp(string turnResult, bool isPlayer1)
+void Executive::receivedPowerUp(string turnResult, bool isPlayer1, string coord)
 {
   if(turnResult == "T" || turnResult == "R" || turnResult == "U" || turnResult == "S")
   {
     m_powerups.addPowerUp(turnResult, isPlayer1);
+    m_player1->getBoard()->setCoor(coord, "O");
   }
 }
 vector<string>* Executive::getPowerups(const int player) const
