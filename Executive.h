@@ -244,5 +244,15 @@ class Executive
      * @param n = int of num ships
      */
     void placeAIShip(int n);
+
+    /** Generates coordinates for a Ship.
+     * @pre the Ship's start and end coordinates have already been validated.
+     * @param direction the direction of the Ship's endpoint relative to its starting coordinate: 1 for north, 2 for east, 3 for south, 4 for west.
+     * @param startRow the starting row coordinate.
+     * @param startCol the starting column coordinate.
+     * @param size the size of the Ship.
+     * @return a pointer to an array of string coordinates that the Ship will occupy.
+     */
+    string* generateCoordsArr(int direction, int startRow, int startCol, int size);
 };
 #endif

@@ -555,13 +555,11 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
 
       if(south && (std::stoi(end.substr(0,1))== r+(size-1)))
       {
-        std::string* arr = new std::string[size];
+        std::string* arr = generateCoordsArr(3, r, c, size);
         int index = r;
         for(int i = 0; i<size; i++)
         {
           taken[index][charCoordtoIntCoord(start.at(1))] = true;
-          std::string coor = std::to_string(index) + ":" + std::to_string(charCoordtoIntCoord(start.at(1)));
-          arr[i] = coor;
           index++;
         }
         player->addShip(size, arr);
@@ -569,13 +567,11 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
       }
       else if (north && (std::stoi(end.substr(0,1)) == r-(size-1)))
       {
-        std::string* arr = new std::string[size];
+        std::string* arr = generateCoordsArr(1, r, c, size);
         int index = r;
         for(int i = size-1; i>=0; i--)
         {
           taken[index][charCoordtoIntCoord(start.at(1))] = true;
-          std::string coor = std::to_string(index) + ":" + std::to_string(charCoordtoIntCoord(start.at(1)));
-          arr[i] = coor;
           index--;
         }
         player->addShip(size, arr);
@@ -583,13 +579,11 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
       }
       else if (east && (end.at(1) > start.at(1)))
       {
-        std::string* arr = new std::string[size];
+        std::string* arr = generateCoordsArr(2, r, c, size);
         int index = c;
         for (int i = 0; i<size; i++)
         {
           taken[r][index] = true;
-          std::string coor = std::to_string(r) + ":" + std::to_string(index);
-          arr[i] = coor;
           index++;
         }
         player->addShip(size, arr);
@@ -597,13 +591,11 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
       }
       else if (west && (end.at(1) < start.at(1)))
       {
-        std::string* arr = new std::string[size];
+        std::string* arr = generateCoordsArr(4, r, c, size);
         int index = c;
         for (int i = size-1; i>=0; i--)
         {
           taken[r][index] = true;
-          std::string coor = std::to_string(r) + ":" + std::to_string(index);
-          arr[i] = coor;
           index--;
         }
         player->addShip(size, arr);
@@ -1242,4 +1234,55 @@ void Executive::clearConsole() const
   {
     cout << '\n';
   }
+}
+
+string* Executive::generateCoordsArr(int direction, int startRow, int startCol, int size)
+{
+  string coor = "";
+  string* coordsArr = new string[size];
+  if(direction == 1)  // north
+  {
+    int rowIndex = startRow;
+    for(int i = size-1; i>=0; i--)
+    {
+      coor = to_string(rowIndex) + ":" + to_string(startCol);
+      coordsArr[i] = coor;
+      rowIndex--;
+    }
+  }
+  else if(direction == 2) // east
+  {
+    int colIndex = startCol;
+    for(int i = 0; i < size; i++)
+    {
+      coor = to_string(startRow) + ":" + to_string(colIndex);
+      coordsArr[i] = coor;
+      colIndex++;
+    }
+  }
+  else if(direction == 3) // south
+  {
+    int rowIndex = startRow;
+    for(int i = 0; i < size; i++)
+    {
+      coor = to_string(rowIndex) + ":" + to_string(startCol);
+      coordsArr[i] = coor;
+      rowIndex++;
+    }
+  }
+  else if(direction == 4) // west
+  {
+    int colIndex = startCol;
+    for(int i = size-1; i >= 0; i--)
+    {
+      coor = to_string(startRow) + ":" + to_string(colIndex);
+      coordsArr[i] = coor;
+      colIndex--;
+    }
+  }
+  else
+  {
+    cout << "ERROR in Exec::generateCoordsArr.\n";
+  }
+  return(coordsArr);
 }
