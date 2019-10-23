@@ -254,5 +254,15 @@ class Executive
      * @return a pointer to an array of string coordinates that the Ship will occupy.
      */
     string* generateCoordsArr(int direction, int startRow, int startCol, int size);
+
+    /** Generates valid endpoints for a Ship.
+     * @pre the Ship's start coordinate has already been validated.
+     * @param startRow the starting row coordinate.
+     * @param startCol the starting column coordinate.
+     * @param size the size of the Ship.
+     * @param taken a pointer to a 2D array of bools representing whether each board coordinate is taken or not.
+     * @return a pointer to an array of possible ending coordinates. North, east, south, & west endpoints will be at indexes 0, 1, 2, & 3 respectively. Directions that are invalid are represented by empty strings.
+     */
+    string* generateEndpoints(int startRow, int startCol, int size, bool** taken);
 };
 #endif

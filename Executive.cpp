@@ -1285,3 +1285,106 @@ string* Executive::generateCoordsArr(int direction, int startRow, int startCol, 
   }
   return(coordsArr);
 }
+
+string* Executive::generateEndpoints(int startRow, int startCol, int size, bool** taken)
+{
+  string* validEndpoints = new string[4];
+
+  if (startRow - (size-1) > 0)  // north
+  {
+    bool valid = true;
+    for (int j = 0; j< size; j++)
+    {
+      if (taken[startRow - j][startCol])
+      {
+        valid = false;
+      }
+    }
+    if (valid)
+    {
+      validEndpoints[0] = to_string(startRow - (size-1)) + ":" + to_string(startCol);
+    }
+    else
+    {
+      validEndpoints[0] = "";
+    }
+  }
+  else
+  {
+    validEndpoints[0] = "";
+  }
+
+  if (startCol + (size-1) <= 8) // east
+  {
+    bool valid = true;
+    for (int j = 0; j< size; j++)
+    {
+      if (taken[startRow][startCol + j])
+      {
+        valid = false;
+      }
+    }
+    if (valid)
+    {
+      validEndpoints[1] = to_string(startCol + (size - 1)) + ":" + to_string(startRow);
+    }
+    else
+    {
+      validEndpoints[1] = "";
+    }
+  }
+  else
+  {
+    validEndpoints[1] = "";
+  }
+
+  if (startRow + (size-1) <= 8) // south
+  {
+    bool valid = true;
+    for (int j = 0; j< size; j++)
+    {
+      if (taken[j+startRow][startCol])
+      {
+        valid = false;
+      }
+    }
+    if (valid)
+    {
+      validEndpoints[2] = to_string(startRow+(size-1)) + ":" + to_string(startCol);
+    }
+    else
+    {
+      validEndpoints[2] = "";
+    }
+  }
+  else
+  {
+    validEndpoints[2] = "";
+  }
+
+  if (startCol-(size-1) > 0)  // west
+  {
+    bool valid = true;
+    for (int j = 0; j< size; j++)
+    {
+      if (taken[startRow][startCol-j])
+      {
+        valid = false;
+      }
+    }
+    if (valid)
+    {
+      validEndpoints[3] = to_string(startCol - (size - 1)) + ":" + to_string(startRow);
+    }
+    else
+    {
+      validEndpoints[3] = "";
+    }
+  }
+  else
+  {
+    validEndpoints[3] = "";
+  }
+
+  return(validEndpoints);
+}
