@@ -276,5 +276,14 @@ class Executive
      */
     int* generateStartCoord(bool** taken);
 
+    /** Helper function for the placement of AI ships.  Updates the 2D array of bools representing which board coordinates are taken.
+     * @param taken a pointer to a 2D array of bools representing whether each board coordinate is taken or not.
+     * @param direction the direction of the Ship's endpoint relative to its starting coordinate: 1 for north, 2 for east, 3 for south, 4 for west.
+     * @param startRow the starting row coordinate.
+     * @param startCol the starting column coordinate.
+     * @param size the size of the Ship.
+     */
+    void updateTaken(bool** taken, int direction, int startRow, int startCol, int size);
+
 };
 #endif

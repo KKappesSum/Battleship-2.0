@@ -1424,3 +1424,47 @@ int* generateStartCoord(bool** taken)
   }
   return(startCoord);
 }
+
+void Executive::updateTaken(bool** taken, int direction, int startRow, int startCol, int size)
+{
+  if(direction == 1)  // north
+  {
+    int rowIndex = startRow;
+    for(int i = size-1; i>=0; i--)
+    {
+      taken[rowIndex][startCol] = true;
+      rowIndex--;
+    }
+  }
+  else if(direction == 2) // east
+  {
+    int colIndex = startCol;
+    for(int i = 0; i < size; i++)
+    {
+      taken[startRow][colIndex] = true;
+      colIndex++;
+    }
+  }
+  else if(direction == 3) // south
+  {
+    int rowIndex = startRow;
+    for(int i = 0; i < size; i++)
+    {
+      taken[rowIndex][startCol] = true;
+      rowIndex++;
+    }
+  }
+  else if(direction == 4) // west
+  {
+    int colIndex = startCol;
+    for(int i = size-1; i >= 0; i--)
+    {
+      taken[startRow][colIndex] = true;
+      colIndex--;
+    }
+  }
+  else
+  {
+    cout << "ERROR in Exec::generateCoordsArr.\n";
+  }
+}
