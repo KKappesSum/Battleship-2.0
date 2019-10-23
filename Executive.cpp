@@ -1404,3 +1404,23 @@ int Executive::chooseRandDirection(string* endpoints)
   }
   return(randDirection);
 }
+
+int* generateStartCoord(bool** taken)
+{
+  int* startCoord = new int[2];
+  bool valid = false;
+  while(!valid)
+  {
+    startCoord[0] = rand() % 8 + 1;
+    startCoord[1] = rand() % 8 + 1;
+    if(taken[startCoord[0]][startCoord[1]])
+    {
+      valid = false;
+    }
+    else
+    {
+      valid = true;
+    }
+  }
+  return(startCoord);
+}

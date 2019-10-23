@@ -271,6 +271,10 @@ class Executive
      */
     int chooseRandDirection(string* endpoints);
 
+    /** Generates a random starting coordinate.
+     * @param taken a pointer to a 2D array of bools representing whether each board coordinate is taken or not.
+     */
+    int* generateStartCoord(bool** taken);
 
 };
 #endif
