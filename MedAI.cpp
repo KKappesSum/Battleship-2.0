@@ -26,6 +26,7 @@ MedAI::MedAI(Grid* grid, int numShips)
 
 void MedAI::updateMiss()
 {
+    cout<<"\nEntered Update Miss\n";
     string fire = "";
     if (getNumAfloat() != prevShipAfloat)
     {
@@ -68,10 +69,12 @@ void MedAI::updateMiss()
             prevShot = fire;
         }
     }
+    cout<<"Exit Updated Miss";
 }
 
 string MedAI::checkDirection()
 {
+    cout<<"\nEntered Chect Direction\n";
     string fire = opponentBoard->randCoor(true);
     if (opponentBoard->getCoor(fire) == "2" || opponentBoard->getCoor(fire) == "3" ||  opponentBoard->getCoor(fire) == "4" || opponentBoard->getCoor(fire) == "5")
     {
@@ -120,11 +123,13 @@ string MedAI::checkDirection()
         hit = false;
         prevShipAfloat -= 1;
     }
+    cout<<"\nExited Check Direction\n";
     return(fire);
 }
 
 string MedAI::fire()
 {
+    cout<<"\nEntered Fire\n";
     if(!hit)
     {
         string fire = checkDirection();
@@ -287,6 +292,7 @@ string MedAI::fire()
             cout << "Error something went wrong in fire for medium AI";
         }
     }
+    cout<<"\nExited Fire\n";
 }
 
 
