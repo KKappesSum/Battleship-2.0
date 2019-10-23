@@ -1388,3 +1388,19 @@ string* Executive::generateEndpoints(int startRow, int startCol, int size, bool*
 
   return(endpoints);
 }
+
+int Executive::chooseRandDirection(string* endpoints)
+{
+  int randDirection = 0;
+  bool valid = false;
+  while(!valid)
+  {
+    randDirection = rand()%4 + 1;
+
+    if(endpoints[randDirection - 1] != "")
+    {
+      valid  = true;
+    }
+  }
+  return(randDirection);
+}

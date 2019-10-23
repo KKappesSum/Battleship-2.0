@@ -264,5 +264,11 @@ class Executive
      * @return a pointer to an array of possible ending coordinates. North, east, south, & west endpoints will be at indexes 0, 1, 2, & 3 respectively. Directions that are invalid are represented by empty strings.
      */
     string* generateEndpoints(int startRow, int startCol, int size, bool** taken);
+
+    /** Chooses a random direction to place a Ship, given an array of endpoints.
+     * @param endpoints a pointer to an array of possible ending coordinates. North, east, south, & west endpoints will be at indexes 0, 1, 2, & 3 respectively. Directions that are invalid are represented by empty strings.
+     * @return 1, 2, 3, or 4 for north, east, south, & west directions respectively; or 0 if all directions are invalid.
+     */
+    int chooseRandDirection(string* endpoints);
 };
 #endif
