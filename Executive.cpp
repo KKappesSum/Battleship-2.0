@@ -1288,7 +1288,7 @@ string* Executive::generateCoordsArr(int direction, int startRow, int startCol, 
 
 string* Executive::generateEndpoints(int startRow, int startCol, int size, bool** taken)
 {
-  string* validEndpoints = new string[4];
+  string* endpoints = new string[4];
 
   if (startRow - (size-1) > 0)  // north
   {
@@ -1302,16 +1302,16 @@ string* Executive::generateEndpoints(int startRow, int startCol, int size, bool*
     }
     if (valid)
     {
-      validEndpoints[0] = to_string(startRow - (size-1)) + ":" + to_string(startCol);
+      endpoints[0] = to_string(startRow - (size-1)) + ":" + to_string(startCol);
     }
     else
     {
-      validEndpoints[0] = "";
+      endpoints[0] = "";
     }
   }
   else
   {
-    validEndpoints[0] = "";
+    endpoints[0] = "";
   }
 
   if (startCol + (size-1) <= 8) // east
@@ -1326,16 +1326,16 @@ string* Executive::generateEndpoints(int startRow, int startCol, int size, bool*
     }
     if (valid)
     {
-      validEndpoints[1] = to_string(startCol + (size - 1)) + ":" + to_string(startRow);
+      endpoints[1] = to_string(startCol + (size - 1)) + ":" + to_string(startRow);
     }
     else
     {
-      validEndpoints[1] = "";
+      endpoints[1] = "";
     }
   }
   else
   {
-    validEndpoints[1] = "";
+    endpoints[1] = "";
   }
 
   if (startRow + (size-1) <= 8) // south
@@ -1350,16 +1350,16 @@ string* Executive::generateEndpoints(int startRow, int startCol, int size, bool*
     }
     if (valid)
     {
-      validEndpoints[2] = to_string(startRow+(size-1)) + ":" + to_string(startCol);
+      endpoints[2] = to_string(startRow+(size-1)) + ":" + to_string(startCol);
     }
     else
     {
-      validEndpoints[2] = "";
+      endpoints[2] = "";
     }
   }
   else
   {
-    validEndpoints[2] = "";
+    endpoints[2] = "";
   }
 
   if (startCol-(size-1) > 0)  // west
@@ -1374,17 +1374,17 @@ string* Executive::generateEndpoints(int startRow, int startCol, int size, bool*
     }
     if (valid)
     {
-      validEndpoints[3] = to_string(startCol - (size - 1)) + ":" + to_string(startRow);
+      endpoints[3] = to_string(startCol - (size - 1)) + ":" + to_string(startRow);
     }
     else
     {
-      validEndpoints[3] = "";
+      endpoints[3] = "";
     }
   }
   else
   {
-    validEndpoints[3] = "";
+    endpoints[3] = "";
   }
 
-  return(validEndpoints);
+  return(endpoints);
 }
