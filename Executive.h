@@ -282,8 +282,9 @@ class Executive
      * @param startRow the starting row coordinate.
      * @param startCol the starting column coordinate.
      * @param size the size of the Ship.
+     * @param value the value to assign into the 2D array.
      */
-    void updateTaken(bool** taken, int direction, int startRow, int startCol, int size);
+    void updateTaken(bool** taken, int direction, int startRow, int startCol, int size, bool value);
 
 };
 #endif
