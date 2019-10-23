@@ -139,7 +139,7 @@ void Admiral::removeLastShip()
 
 	for(int i = 0; i < size; i++)
 	{
-		m_board->setCoor(coordsPtr[i], "~");
+		m_board.setCoor(coordsPtr[i], "~");
 	}
 	delete[] tempPtr;
 	m_fleet.pop_back();
