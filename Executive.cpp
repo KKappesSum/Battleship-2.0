@@ -1201,8 +1201,7 @@ void Executive::setupGame(bool AI)
     placeShip(m_numShips, m_player1, false);
 
     //place AI ships
-    placeAIShip(m_numShips);
-    //placeShip(m_numShips, m_player2, true);
+    placeAIShips(m_numShips);
     placePowerUp(true);
     std::cout << "Thanks for placing your ships. The AI's ships have been placed randomly. Time to start the game!\n";
   }
@@ -1469,7 +1468,7 @@ void Executive::updateTaken(bool** taken, int direction, int startRow, int start
   }
 }
 
-void Executive::placeAIShips(int numShips)
+void Executive::placeAIShips(const int numShips)
 {
   bool** taken = new bool*[9];
   for(int i = 0; i < 9; i++)
@@ -1531,16 +1530,16 @@ void Executive::placeAIShips(int numShips)
     
     if(canPlaceShip)
     {
-      allStartCoords[i][0] = startCoord[0];
-      allStartCoords[i][1] = startCoord[1];
-      allStartCoords[i][2] = direction;
+      allStartCoords[i - 1][0] = startCoord[0];
+      allStartCoords[i - 1][1] = startCoord[1];
+      allStartCoords[i - 1][2] = direction;
       i++;
     }
     else
     {
       m_player2->removeLastShip();
       
-      updateTaken(taken, allStartCoords[i - 1][2], allStartCoords[i - 1][0], allStartCoords[i - 1][1], i, false);
+      updateTaken(taken, allStartCoords[i - 2][2], allStartCoords[i - 2][0], allStartCoords[i - 2][1], i, false);
       i--;
     }
 

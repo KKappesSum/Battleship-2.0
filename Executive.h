@@ -292,6 +292,6 @@ class Executive
      * @param numShips the number of Ships the AI will have.
      * @post creates and adds Ships to the AI and updates its game board.
      */
-    void placeAIShips(int numShips);
+    void placeAIShips(const int numShips);
 };
 #endif
