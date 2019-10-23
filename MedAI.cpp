@@ -26,6 +26,7 @@ MedAI::MedAI(Grid* grid, int numShips)
 
 void MedAI::updateMiss()
 {
+    cout<<"\nEntered Update Miss\n";
     string fire = "";
     if (getNumAfloat() != prevShipAfloat)
     {
@@ -68,46 +69,60 @@ void MedAI::updateMiss()
             prevShot = fire;
         }
     }
+    cout<<"Exit Updated Miss";
 }
 
 string MedAI::checkDirection()
 {
+    cout<<"\nEntered Chect Direction\n";
     string fire = opponentBoard->randCoor(true);
     if (opponentBoard->getCoor(fire) == "2" || opponentBoard->getCoor(fire) == "3" ||  opponentBoard->getCoor(fire) == "4" || opponentBoard->getCoor(fire) == "5")
     {
+        cout<<"\nEntered if\n";
         counter = 1;
         hit = true;
         prevShot = fire;
         string val = opponentBoard->getCoor(fire);
+        cout<<"\nCreating r and c\n";
+        cout<<"\nPrevshot: "<< prevShot<<"\n";
         int r = stoi(prevShot.substr(0,1));
-        int c = stoi(prevShot.substr(1,2));
+        int c = stoi(prevShot.substr(2));
+        cout<< "\nrow: "<< r<<" col: "<<c<<"\n";
         if (c!=8)
         {
+            cout<<"c!=8";
             string temp = to_string(r) + ":" + to_string(c+1);
+            cout<<"\ntemp: "<<temp<<"\n";
             if (opponentBoard->getCoor(temp) == val)
             {
                 direction = 1;
             }
         }
-        if (c!=0)
+        if (c!=1)
         {
+            cout<<"c!=0";
             string temp = to_string(r) + ":" + to_string(c-1);
+            cout<<"\ntemp: "<<temp<<"\n";
             if (opponentBoard->getCoor(temp) == val)
             {
                 direction = 3;
             }
         }
         if (r!=8)
-        {
+        {  
+            cout<<"r!=8";
             string temp = to_string(r+1) + ":" + to_string(c);
+            cout<<"\ntemp: "<<temp<<"\n";
             if (opponentBoard->getCoor(temp) == val)
             {
                 direction = 4;
             }
         }
-        if (r!=0)
+        if (r!=1)
         {
+            cout<<"r!=0";
             string temp = to_string(r-1) + ":" + to_string(c);
+            cout<<"\ntemp: "<<temp<<"\n";
             if (opponentBoard->getCoor(temp) == val)
             {
                 direction = 2;
@@ -120,11 +135,13 @@ string MedAI::checkDirection()
         hit = false;
         prevShipAfloat -= 1;
     }
+    cout<<"\nExited Check Direction\n";
     return(fire);
 }
 
 string MedAI::fire()
 {
+    cout<<"\nEntered Fire\n";
     if(!hit)
     {
         string fire = checkDirection();
@@ -135,7 +152,7 @@ string MedAI::fire()
         string fire = "";
         //need to set current to 0 in constructor 
         int r = stoi(prevShot.substr(0,1));
-        int c = stoi(prevShot.substr(1,2));
+        int c = stoi(prevShot.substr(2));
         if (current ==  0)
         {
             if (c!=8)
@@ -287,6 +304,7 @@ string MedAI::fire()
             cout << "Error something went wrong in fire for medium AI";
         }
     }
+    cout<<"\nExited Fire\n";
 }
 
 
