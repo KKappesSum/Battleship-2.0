@@ -810,6 +810,7 @@ bool Executive::handleTurn(const int player, const bool AI)
         targetCoord = m_player2->fire();
         cout<<"\nIncoming Shot\n";
         turnResult = m_player1->incomingShot(targetCoord);
+        cout<<"\nTurn Result"<<turnResult<<"\n";
         return(m_player1->getNumAfloat() < 1);
     }
   }
@@ -894,6 +895,7 @@ int Executive::gameplay(const bool AI)
     else
     {
       gameOver = handleTurn(2, AI);
+      cout<<"\nAI Turn Over\n";
     }
 
     if(gameOver)
