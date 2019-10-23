@@ -604,8 +604,7 @@ void Executive::placeShip(int n, Admiral* player, bool ai)
     }
     else //if size is 1x1 don't ask for ending coor
     {
-      std::string* arr = new std::string[size];
-      arr[0] = std::to_string(r) + ":" + std::to_string(c);
+      std::string* arr = generateCoordsArr(1, r, c, size);
       taken[r][c] = true;
       player->addShip(size, arr);
       delete[] arr;
