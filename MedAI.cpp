@@ -78,14 +78,19 @@ string MedAI::checkDirection()
     string fire = opponentBoard->randCoor(true);
     if (opponentBoard->getCoor(fire) == "2" || opponentBoard->getCoor(fire) == "3" ||  opponentBoard->getCoor(fire) == "4" || opponentBoard->getCoor(fire) == "5")
     {
+        cout<<"\nEntered if\n";
         counter = 1;
         hit = true;
         prevShot = fire;
         string val = opponentBoard->getCoor(fire);
+        cout<<"\nCreating r and c\n";
+        cout<<"\nPrevshot: "<< prevShot<<"\n";
         int r = stoi(prevShot.substr(0,1));
-        int c = stoi(prevShot.substr(1,2));
+        int c = stoi(prevShot.substr(2));
+        cout<< "\nrow: "<< r<<" col: "<<c<<"\n";
         if (c!=8)
         {
+            cout<<"c!=8";
             string temp = to_string(r) + ":" + to_string(c+1);
             if (opponentBoard->getCoor(temp) == val)
             {
@@ -94,6 +99,7 @@ string MedAI::checkDirection()
         }
         if (c!=0)
         {
+            cout<<"c!=0";
             string temp = to_string(r) + ":" + to_string(c-1);
             if (opponentBoard->getCoor(temp) == val)
             {
@@ -101,7 +107,8 @@ string MedAI::checkDirection()
             }
         }
         if (r!=8)
-        {
+        {  
+            cout<<"r!=8";
             string temp = to_string(r+1) + ":" + to_string(c);
             if (opponentBoard->getCoor(temp) == val)
             {
@@ -110,6 +117,7 @@ string MedAI::checkDirection()
         }
         if (r!=0)
         {
+            cout<<"r!=0";
             string temp = to_string(r-1) + ":" + to_string(c);
             if (opponentBoard->getCoor(temp) == val)
             {
