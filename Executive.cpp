@@ -1405,7 +1405,7 @@ int Executive::chooseRandDirection(string* endpoints)
   return(randDirection);
 }
 
-int* generateStartCoord(bool** taken)
+int* Executive::generateStartCoord(bool** taken)
 {
   int* startCoord = new int[2];
   bool valid = false;
@@ -1467,4 +1467,97 @@ void Executive::updateTaken(bool** taken, int direction, int startRow, int start
   {
     cout << "ERROR in Exec::updateTaken.\n";
   }
+}
+
+void Executive::placeAIShips(int numShips)
+{
+  bool** taken = new bool*[9];
+  for(int i = 0; i < 9; i++)
+  {
+    taken[i] = new bool[9];
+  }
+
+  for(int i = 0; i < 9; i++)
+  {
+    for(int j = 0; j < 9; j++)
+    {
+      taken[i][j] = false;
+    }
+  }
+
+  int** allStartCoords = new int*[numShips];
+  for(int i = 0; i < 3; i++)
+  {
+    allStartCoords[i] = new int[3];
+  }
+  int* startCoord = nullptr;
+  string* endpoints = nullptr;
+  int direction = 0;
+  string* coordsArr = nullptr;
+
+  bool canPlaceShip = true;
+  int i = 1;
+  while(i <= numShips)
+  {
+    if(i < 1)
+    {
+      i = 1;
+      cout << "Exec::placeAIShips: somehow the loop went below 1\n";
+    }
+
+    startCoord = generateStartCoord(taken);
+    if(i > 1)
+    {
+      endpoints = generateEndpoints(startCoord[0], startCoord[1], i, taken);
+      direction = chooseRandDirection(endpoints);
+      if(direction != 0)
+      {
+        coordsArr = generateCoordsArr(direction, startCoord[0], startCoord[1], i);
+        m_player2->addShip(i, coordsArr);
+        canPlaceShip = true;
+        updateTaken(taken, direction, startCoord[0], startCoord[1], i, true);
+      }
+      else
+      {
+        canPlaceShip = false;
+      }
+    }
+    else
+    {
+      coordsArr = generateCoordsArr(1, startCoord[0], startCoord[1], i);
+      canPlaceShip = true;
+      updateTaken(taken, 1, startCoord[0], startCoord[1], i, true);
+    }
+    
+    if(canPlaceShip)
+    {
+      allStartCoords[i][0] = startCoord[0];
+      allStartCoords[i][1] = startCoord[1];
+      allStartCoords[i][2] = direction;
+      i++;
+    }
+    else
+    {
+      m_player2->removeLastShip();
+      
+      updateTaken(taken, allStartCoords[i - 1][2], allStartCoords[i - 1][0], allStartCoords[i - 1][1], i, false);
+      i--;
+    }
+
+    delete[] startCoord;
+    delete[] endpoints;
+    delete[] coordsArr;
+  }
+  
+  for(int i = 0; i < 9; i++)
+  {
+    delete[] taken[i];
+  }
+  delete[] taken;
+
+  for(int i = 0; i < 3; i++)
+  {
+    delete[] allStartCoords[i];
+  }
+  delete[] allStartCoords;
 }

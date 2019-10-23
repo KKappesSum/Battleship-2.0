@@ -273,6 +273,7 @@ class Executive
 
     /** Generates a random starting coordinate.
      * @param taken a pointer to a 2D array of bools representing whether each board coordinate is taken or not.
+     * @return an array of 2 ints: the row and column coordinates at indices 0 and 1 respectively. 
      */
     int* generateStartCoord(bool** taken);
 
@@ -283,8 +284,14 @@ class Executive
      * @param startCol the starting column coordinate.
      * @param size the size of the Ship.
      * @param value the value to assign into the 2D array.
+     * @post updates the taken 2D array with the given value at the appropriate indices.
      */
     void updateTaken(bool** taken, int direction, int startRow, int startCol, int size, bool value);
 
+    /** Places all AI Ships randomly.
+     * @param numShips the number of Ships the AI will have.
+     * @post creates and adds Ships to the AI and updates its game board.
+     */
+    void placeAIShips(int numShips);
 };
 #endif
