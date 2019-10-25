@@ -37,38 +37,38 @@ void MedAI::updateMiss()
         direction = 0;
         current = 0;
     }
-    else if (direction == current)
-    {
-        int r = stoi(prevShot.substr(0,1));
-        int c = stoi(prevShot.substr(2));
-        if (direction ==1)
-        {
-            direction = 3;
-            fire = to_string(r) + ":" + to_string(c-counter);
-            prevShot = fire;
+    // else if (direction == current)
+    // {
+    //     int r = stoi(prevShot.substr(0,1));
+    //     int c = stoi(prevShot.substr(2));
+    //     if (direction ==1)
+    //     {
+    //         direction = 3;
+    //         fire = to_string(r) + ":" + to_string(c-counter);
+    //         prevShot = fire;
         
-        }
-        else if (direction ==2)
-        {
-            direction =4;
-            fire = to_string(r+counter) + ":" + to_string(c);
-            prevShot = fire;
+    //     }
+    //     else if (direction ==2)
+    //     {
+    //         direction =4;
+    //         fire = to_string(r+counter) + ":" + to_string(c);
+    //         prevShot = fire;
             
-        }
-        else if(direction == 3)
-        {
-            direction =1;
-            fire =  to_string(r) + ":" + to_string(c+counter);
-            prevShot = fire;
+    //     }
+    //     else if(direction == 3)
+    //     {
+    //         direction =1;
+    //         fire =  to_string(r) + ":" + to_string(c+counter);
+    //         prevShot = fire;
 
-        }
-        else 
-        {
-            direction = 2;
-            fire = to_string(r-counter) + ":" + to_string(c);
-            prevShot = fire;
-        }
-    }
+    //     }
+    //     else 
+    //     {
+    //         direction = 2;
+    //         fire = to_string(r-counter) + ":" + to_string(c);
+    //         prevShot = fire;
+    //     }
+    // }
     cout<<"Exit Updated Miss";
 }
 
@@ -141,6 +141,7 @@ string MedAI::checkDirection()
 
 string MedAI::fire()
 {
+    updateMiss();
     cout<<"\nEntered Fire\n";
     if(!hit)
     {
