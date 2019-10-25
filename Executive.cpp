@@ -808,6 +808,7 @@ bool Executive::handleTurn(const int player, const bool AI)
     {
         cout<<"\nAI Firing\n";
         targetCoord = m_player2->fire();
+        cout << "targetCoord = " << targetCoord << '\n';
         cout<<"\nIncoming Shot\n";
         turnResult = m_player1->incomingShot(targetCoord);
         cout<<"\nTurn Result"<<turnResult<<"\n";

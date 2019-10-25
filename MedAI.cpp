@@ -120,7 +120,7 @@ string MedAI::checkDirection()
         }
         if (r!=1)
         {
-            cout<<"r!=0";
+            cout<<"r!=1";
             string temp = to_string(r-1) + ":" + to_string(c);
             cout<<"\ntemp: "<<temp<<"\n";
             if (opponentBoard->getCoor(temp) == val)
@@ -159,7 +159,7 @@ string MedAI::fire()
             {
                 current =1;
             }
-            else if (r!=0)
+            else if (r!=1)
             {
                 current = 2;
             }
@@ -187,7 +187,7 @@ string MedAI::fire()
             }
             if (current == 2)
             {
-                if (r == 0)
+                if (r == 1)
                 {
                     current = 4;
                     fire = to_string(r+counter) + ":" + to_string(c);
@@ -202,7 +202,7 @@ string MedAI::fire()
             }
             if (current == 3)
             {
-                if (c== 0)
+                if (c== 1)
                 {
                     current = 1;
                     fire =  to_string(r) + ":" + to_string(c+counter);
@@ -234,11 +234,11 @@ string MedAI::fire()
         if (current == 1)
         {
             fire = to_string(r) + ":" + to_string(c+1);
-            if (r != 0)
+            if (r != 1)
             {
                 current = 2;
             }
-            else if (c!= 0)
+            else if (c!= 1)
             {
                 current = 3;
             }
@@ -251,7 +251,7 @@ string MedAI::fire()
         if (current ==2)
         {
             fire = to_string(r-1) + ":" + to_string(c);
-            if(c!= 0)
+            if(c!= 1)
             {
                 current = 3;
             }
@@ -289,7 +289,7 @@ string MedAI::fire()
             {
                 current = 1;
             }
-            else if (r!= 0)
+            else if (r!= 1)
             {
                 current = 2;
             }
@@ -299,7 +299,7 @@ string MedAI::fire()
             }
             return fire; 
         }
-        if (current >= 5 || current <= 0)
+        if (current >= 5 || current <= 1)
         {
             cout << "Error something went wrong in fire for medium AI";
         }
